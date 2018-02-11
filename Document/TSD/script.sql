@@ -12,16 +12,35 @@ CREATE TABLE `hibah`.`roles` (
   
   CREATE TABLE `hibah`.`users` (
   `id_user` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(400) NOT NULL,
+  `last_login` DATETIME NOT NULL,
+  `update_date` DATETIME NOT NULL,
+  `update_by` VARCHAR(100) NOT NULL,
+  `create_date` DATE NOT NULL,
+  `create_by` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id_user`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC));
+  
+  
+  CREATE TABLE `hibah`.`role_user` (
+  `id_role_user` INT NOT NULL AUTO_INCREMENT,
+  `id_user` INT NULL,
   `id_role` INT NULL,
-  `password` VARCHAR(1000) NOT NULL,
   `update_date` DATETIME NOT NULL,
   `update_by` VARCHAR(45) NOT NULL,
   `create_date` DATE NOT NULL,
   `create_by` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_user`),
-  INDEX `fk_user_role_idx` (`id_role` ASC),
-  CONSTRAINT `fk_user_role`
+  PRIMARY KEY (`id_role_user`),
+  INDEX `fk_user_idx` (`id_user` ASC),
+  INDEX `fk_role_idx` (`id_role` ASC),
+  CONSTRAINT `fk_user`
+    FOREIGN KEY (`id_user`)
+    REFERENCES `hibah`.`users` (`id_user`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_role`
     FOREIGN KEY (`id_role`)
     REFERENCES `hibah`.`roles` (`id_role`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT);
