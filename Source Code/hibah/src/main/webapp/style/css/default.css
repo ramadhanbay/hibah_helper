@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'DINMedium';
+    src: url('../fonts/FF_DIN_Medium.eot');
+    src: url('../fonts/FF_DIN_Medium.eot?#iefix')
+        format('embedded-opentype'),
+        url('../fonts/FF_DIN_Medium.woff') format('woff'),
+        url('../fonts/FF_DIN_Medium.ttf') format('truetype'),
+        url('../fonts/FF_DIN_Medium.svg#DINMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+	font-family: 'DINMedium', arial, tahoma, sans-serif;
+}
+
+.wrapper {
+	min-height:100%;
+	position:relative;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding-bottom:100px;
+    margin: 0px auto;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+
+	vertical-align: baseline;
+
+	background-size: cover;
+	background-repeat: no-repeat;
+	font-family: Arial,sans-serif;
+	font-size: 14px;
+	line-height: 1.42857;
+	color: #333;
+}
+
+
+
+.footer-background {
+	width:100%;
+	height:100px;
+
+	position:absolute;
+	bottom:0;
+	left:0;
+	background: url(../images/footer.jpg);
+}
+
+
+
+.title-container {
+	padding: 0px;
+	height: 55px;
+	background-image: url("../images/header.jpg");
+}
+
+.title {
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 0;
+	font-size: 1.7em;
+	height: 50px;
+	color: #fff;
+}
+
+.title-menu {
+	display: block;
+
+
+	float: right;	
+	text-align: right;
+	color: #fff;
+}
+
+.z-tabs-cnt li {
+	margin-right: 2px;
+}
+
+
+
+
+
+.button-box {
+	padding: 5px;
+}
+
+
+.title-menu a{
+	color: #fff;
+	text-decoration: underline;
+}
+
+
+.title-menu a:hover {
+	text-decoration: none ;
+}
+
+.form-label {
+	font-weight: bold;
+}
+
+
+
+.form-entry {
+	font-weight: bold;
+}
+
+.footer {
+	background-image: url("../images/fifgroup_banner_bottom.jpg");
+	color: #fff;
+	padding-top: 0px;
+	padding-left: 0px;
+	text-align: right;
+}
+
+tr.z-row-over>td.z-row-inner {
+	background-color: white;
+}
+
+tr.z-row-over.z-grid-odd>td.z-row-inner,tr.z-row-over>.z-cell {
+	border: 1px solid #F0FAFF;
+	border-left: 1px solid #FFF;
+	border-right: 1px solid transparent;
+	background-color: #F0FAFF;
+}
+
+tr.z-row-over>td.z-row-inner,tr.z-row-over>.z-cell {
+	border: 1px solid white;
+	background-color: white;
+}
+
+tr.z-row-over>td.z-row-inner>.z-row-cnt {
+	border: none;
+	background-color: white;
+	color: #00547A;
+}
+
+tr.z-row-over.z-grid-odd>td.z-row-inner>.z-row-cnt {
+	border: none;
+	background-color: #F0FAFF;
+	color: #00547A;
+}
+
+.container-message {
+	font-size:14px;
+	font-weight: normal;
+	/* color: #00547A; */	
+}
+
+.label-image {
+	color: red;	
+}
+
+
+
+
+
+
+

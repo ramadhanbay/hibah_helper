@@ -9,5 +9,14 @@
 		<value>hibah</value>
 	</preference>
 	-->
+	<library-property>
+    	<name>org.zkoss.theme.preferred</name>
+    	<value>sapphire</value>
+    	<!--<value>deepsea</value>--> <!-- no whitespace in theme names -->
+	</library-property>
 	
+	<library-property>
+        <name>org.zkoss.zul.Button.mold</name>
+        <value>trendy</value>
+    </library-property>
 </zk>

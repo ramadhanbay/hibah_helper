@@ -1,0 +1,45 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="roleWin" border="none" apply="com.apps.pu.hibah.RoleInquiryComposser">
+<groupbox closable="false" mold="3d">
+		<caption label="${labels.role.role}" >
+		</caption>
+		<grid sclass="form-entry">
+			<columns>
+				<column align="right" width="200px"/>
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="${labels.role.role}"/>
+					<textbox maxlength="100" width="250px" id="txtRoleName" />
+				</row>
+				<row>
+					<space/>
+					<hbox>
+						<button id="btnFind" label="${labels.common.search}" mold="trendy" image="${labels.image.link.search}" />
+						<button id="btnNew" label="${labels.common.newSetup}" mold="trendy" image="${labels.image.link.add}" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<space height="10px"/>
+		<listbox id="lstRole" mold="paging" emptyMessage="${labels.common.dataNotFound}" pagingPosition="both" pageSize="20">
+			<listhead menupopup="auto">
+				<listheader label="${labels.role.role}" sort="auto(roleName)" />
+				<listheader label="${labels.common.description}"   sort="auto(description)"/>		
+				<listheader label="${labels.common.lastUpdateDate}" sort="auto(updateDate)"/>
+				<listheader label="${labels.common.lastUpdateBy}" sort="auto(updateBy)" />
+			</listhead>
+			<template name="model">
+				<listitem value="${each}">
+					<listcell label="${each.roleName}"/>
+					<listcell label="${each.description}"/>
+					<listcell label="${each.updateDate}"/>
+					<listcell label="${each.updateBy}"/>
+				</listitem>
+			</template>
+		</listbox>
+	</groupbox>
+</window>
+</zk>

@@ -1,33 +1,26 @@
 <zk>
-	<window apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('vm')@init('com.apps.pu.hibah.MyViewModel')"
-		validationMessages="@id('vmsgs')" width="600px" vflex="1">
-		<vlayout>
-			<hbox align="center" hflex="1">
-				Log message: <textbox value="@save(vm.message)"
-					onOK="@command('addLog')" hflex="1" placeholder="What happened?" />
-				<button label="add" onClick="@command('addLog')" />
-			</hbox>
-			<listbox model="@bind(vm.logListModel)" rows="10">
-				<listhead>
-					<listheader hflex="min" />
-					<listheader hflex="min" />
-					<listheader />
-				</listhead>
-				<template name="model">
-					<listitem>
-						<listcell>
-							<button label="delete" onClick="@command('deleteLog', log=each)" />
-						</listcell>
-						<listcell>
-							<label value="@bind(each.date) @converter('formattedDate', format='yyyy/MM/dd HH:mm:ss')" />
-						</listcell>
-						<listcell>
-							<label value="@bind(each.message)" />
-						</listcell>
-					</listitem>
-				</template>
-			</listbox>
-		</vlayout>
+	<window id="loginWin" title="Login"  border="normal"
+		width="50%" position="center" mode="overlapped"
+		style="margin: 70px 0px 0px 0px;" apply="com.apps.pu.hibah.LoginComposser">
+			<grid>
+				<columns>
+					<column align="right" width="10%" />
+					<column align="left" width="30%" />
+				</columns>
+				<rows>
+					<row>
+						<label>User</label>
+						<textbox id="user"></textbox>
+					</row>
+					<row>
+						<label>Password</label>
+						<textbox id="password"></textbox>
+					</row>
+					<row>
+						<space/>
+						<button label="Login" id="btnLogin"></button>
+					</row>
+				</rows>
+			</grid>
 	</window>
 </zk>

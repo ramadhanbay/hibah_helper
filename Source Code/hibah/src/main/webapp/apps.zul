@@ -1,0 +1,42 @@
+<?page title="hibah" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="./style/css/style.css" />
+<style src="./style/css/default.css" />
+<window id="winAppsHibah" border="none" width="100%" height="100%" apply="com.apps.pu.hibah.AppComposser">
+
+ <borderlayout height="100%">
+            <north height="60px" border="normal">
+	            <div sclass="title-container">
+	            	<label sclass="title" />
+	            	<div sclass="title-menu" align="right" style="padding:5px;  color:white">
+						<div style="padding-bottom:10px">
+							( Logged in as
+							<label id="lblUsername" style="font-weight:bold;"/>
+							|
+							<a id="logout" style="color:white">
+								Logout
+							</a>
+							|
+							<label id="lblLastLogin"/>
+							)
+						</div>
+					</div>
+	            </div>
+            </north>            
+            <west width="250px" flex="true" splittable="true"
+				border="normal" collapsible="true" title="Navigator">
+                <div id="container" sclass="horizontal">
+			        <navbar id="navbar" orient="vertical" collapsed="false">
+			            <template name="navitem" var="navigationPage">
+			                <navitem label="@load(navigationPage.subTitle)" selected="@load(navigationPage.selected)"/>
+			            </template>
+			        </navbar>
+			    </div>
+            </west>
+            <center border="normal">
+                <div><include id="contentInclude" mode="instant" sclass="content" /></div>
+            </center>
+</borderlayout>
+
+</window>
+</zk>
