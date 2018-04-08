@@ -4,7 +4,10 @@ public enum PageEnum {
 
 	HMPG("Home"),
 	USRADM("User Admin"),
-	RLADM("Role Admin");
+	RLADM("Role Admin"),
+	PRGREP("Progress"),
+	CATREP("Kategori")
+	;
 	
 	private String value;
 	

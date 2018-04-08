@@ -48,9 +48,24 @@ public class AppComposser extends SelectorComposer<Window> {
 		
 		Nav nav = new Nav();
 		nav.setLabel("Input Data");
-		nav.setIconSclass("z-icon-group");
-		
+		nav.setIconSclass("z-icon-group");		
 		nav.setParent(navbar);
+		
+		Nav navReport = new Nav();
+		navReport.setLabel("Laporan");
+		navReport.setIconSclass("z-icon-book");
+		navReport.setBadgeText("2");
+		navReport.setParent(navbar);
+		
+		Navitem itemProgress = new Navitem();
+		itemProgress.setLabel("Progress");
+		itemProgress.setId(PageEnum.PRGREP.getValue());
+		itemProgress.setParent(navReport);
+		
+		Navitem itemCategories = new Navitem();
+		itemCategories.setLabel("Kategori");
+		itemCategories.setId(PageEnum.CATREP.getValue());
+		itemCategories.setParent(navReport);
 		
 		Nav navAdmin = new Nav();
 		navAdmin.setLabel("Administrasi");
@@ -78,6 +93,10 @@ public class AppComposser extends SelectorComposer<Window> {
 		}else if(event.getTarget().getId() == PageEnum.USRADM.getValue()) {
 			contentInclude.setSrc("index.zul");
 		}else if (event.getTarget().getId() == PageEnum.RLADM.getValue()) {
+			contentInclude.setSrc("view/role_inquiry.zul");
+		}else if (event.getTarget().getId() == PageEnum.PRGREP.getValue()) {
+			contentInclude.setSrc("view/role_inquiry.zul");
+		}else if (event.getTarget().getId() == PageEnum.CATREP.getValue()) {
 			contentInclude.setSrc("view/role_inquiry.zul");
 		}
 	}
