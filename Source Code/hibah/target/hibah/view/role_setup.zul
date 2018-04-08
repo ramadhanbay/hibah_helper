@@ -1,0 +1,48 @@
+<zk>
+<window id="roleWinSetup" apply="com.apps.pu.hibah.RoleSetupComposser">
+<groupbox closable="false" mold="3d">
+	<caption label="${labels.role.role}"/>
+	<grid sclass="form-entry">
+		<columns>
+			<column width="200px" align="right"/>
+			<column />
+		</columns>
+		<rows>
+			<row>
+				<hlayout>
+					<label value="${labels.role.roleCode}"/>
+					<label value="${labels.common.required}" style="color:red" />
+				</hlayout>
+				<textbox id="txtCode" width="250px" maxlength="100" />
+			</row>
+			<row>
+				<hlayout>
+					<label value="${labels.role.role}"/>
+					<label value="${labels.common.required}" style="color:red" />
+				</hlayout>
+				<textbox id="txtRole" width="250px" maxlength="100" />
+			</row>
+			<row>
+				<hlayout>
+					<label value="${labels.common.description}"/>
+					<label value="${labels.common.required}" style="color:red" />
+				</hlayout>				
+				<textbox id="txtDescription" rows="3" width="250px" maxlength="150" />
+			</row>
+		</rows>
+	</grid>
+	
+<space />
+<div style="height:30px; width: 100%; position:relative;">
+	<div style="float:right;">
+		<button id="btnCancel" label="${labels.common.cancel}" mold="trendy" image="${labels.image.link.cancel}"/>
+	</div>
+	<div style="float:left; margin-left:50%;">
+		<button id="btnSave" label="${labels.common.save}" mold="trendy" image="${labels.image.link.save}"/>
+		<space />
+		<button id="btnDelete" label="${labels.common.delete}" mold="trendy" image="${labels.image.link.delete}"/>	
+	</div>
+</div>
+</groupbox>
+</window>
+</zk>

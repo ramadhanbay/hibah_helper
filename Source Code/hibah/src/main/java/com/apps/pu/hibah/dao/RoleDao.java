@@ -42,5 +42,29 @@ public class RoleDao {
 			return null;
 		}		
 	}
+	
+	@Transactional
+	public Roles save(Roles role) {
+		
+		if(role.getIdRole() != null) {
+			em.merge(role);
+		}else {
+			em.persist(role);
+		}
+		
+		em.flush();
+		
+		return role;
+	}
+
+	@Transactional
+	public Roles delete(Roles role) {
+		// TODO Auto-generated method stub
+		role = em.merge(role);
+		em.remove(role);
+		em.flush();
+		
+		return role;
+	}
 
 }

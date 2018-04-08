@@ -23,4 +23,17 @@ public class RoleServiceImpl implements RoleService{
 		return dao.getRolesLikeName(roleName);
 	}
 
+	@Override
+	public void save(Roles role) {
+		
+		dao.save(role);
+		
+	}
+
+	@Override
+	public void delete(Roles role) {
+		// TODO Auto-generated method stub
+		dao.delete(role);
+	}
+
 }

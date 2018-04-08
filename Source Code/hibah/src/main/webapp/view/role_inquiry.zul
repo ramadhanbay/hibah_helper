@@ -26,6 +26,7 @@
 		<space height="10px"/>
 		<listbox id="lstRole" mold="paging" emptyMessage="${labels.common.dataNotFound}" pagingPosition="both" pageSize="20">
 			<listhead menupopup="auto">
+				<listheader label="${labels.common.action}" width="75px"/>
 				<listheader label="${labels.role.role}" sort="auto(roleName)" />
 				<listheader label="${labels.common.description}"   sort="auto(description)"/>		
 				<listheader label="${labels.common.lastUpdateDate}" sort="auto(updateDate)"/>
@@ -33,6 +34,9 @@
 			</listhead>
 			<template name="model">
 				<listitem value="${each}">
+					<listcell>
+						<a label="${labels.common.detail}" style="text-decoration:underline ;color:blue"  forward="onDetail(${each})"/>
+					</listcell>	
 					<listcell label="${each.roleName}"/>
 					<listcell label="${each.description}"/>
 					<listcell label="${each.updateDate}"/>

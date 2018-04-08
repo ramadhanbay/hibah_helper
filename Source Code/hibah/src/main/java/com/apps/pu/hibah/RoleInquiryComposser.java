@@ -1,8 +1,12 @@
 package com.apps.pu.hibah;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.event.SerializableEventListener;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.select.SelectorComposer;
@@ -70,6 +74,23 @@ public class RoleInquiryComposser extends SelectorComposer<Window>{
 	private List<Roles> getData() {
 		String roleName = txtRoleName.getText();
 		return roleServiceImpl.findRoleLikeName(roleName);
+	}
+	
+	@Listen("onDetail= #roleWin")
+	public void onDetail(ForwardEvent event){
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put(Roles.class.getName(), event.getData());
+		
+		Executions.createComponents("view/role_setup.zul", getSelf().getParent(), param);
+		getSelf().detach();
+	}
+	
+	@Listen("onClick = #btnNew")
+	public void addNew(){
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("NEW", "NEW");
+		Executions.createComponents("view/role_setup.zul", getSelf().getParent(), param);
+		getSelf().detach();
 	}
 
 }
