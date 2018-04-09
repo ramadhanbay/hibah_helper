@@ -11,6 +11,7 @@
 		<commons-io>2.4</commons-io>
 		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
 		<packname>-${project.version}-FL-${maven.build.timestamp}</packname>
+		<groovy.version>2.1.1</groovy.version>
 	</properties>
 	<packaging>war</packaging>
 	<name>The hibah Project</name>
@@ -116,6 +117,12 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.1</version>
 		</dependency>
+		<!-- Groovy -->
+			<dependency>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy-all</artifactId>
+				<version>${groovy.version}</version>
+			</dependency>
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>

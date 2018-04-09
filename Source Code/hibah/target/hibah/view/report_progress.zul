@@ -1,0 +1,45 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="reportProgressWin" border="none" apply="com.apps.pu.hibah.ReportProgressComposser">
+<groupbox closable="false" mold="3d">
+		<caption label="${labels.report.progress.label}" >
+		</caption>
+		<grid sclass="form-entry">
+			<columns>
+				<column align="right" width="200px"/>
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="${labels.report.status}"/>
+					<listbox mold="select" width="250px" id="lstStatus" />
+				</row>
+				<row>
+					<label value="${labels.report.satuankerja}"/>
+					<bandbox id="bnbSatuanKerja" use="com.apps.pu.hibah.ui.PopupDouble" width="250px"></bandbox>	
+				</row>
+				<row>
+					<label value="${labels.report.pemda}"/>
+					<textbox maxlength="100" width="250px" id="txtPemda" />
+				</row>
+				<row>
+					<label value="${labels.report.nilai}"/>
+					<hbox>
+						<intbox width="250px" id="nilaiMin" value="0"></intbox>
+						<label> Sampai </label>
+						<intbox width="250px" id="nilaiMax" value="0"></intbox>
+					</hbox>
+				</row>
+				<row>
+					<space/>
+					<hbox>
+						<button id="btnReport" label="${labels.common.report}" mold="trendy" image="${labels.image.link.search}" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<space></space>
+		<jasperreport id="report" height="360px" />
+	</groupbox>
+</window>
+</zk>

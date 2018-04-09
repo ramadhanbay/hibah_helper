@@ -95,7 +95,7 @@ public class AppComposser extends SelectorComposer<Window> {
 		}else if (event.getTarget().getId() == PageEnum.RLADM.getValue()) {
 			contentInclude.setSrc("view/role_inquiry.zul");
 		}else if (event.getTarget().getId() == PageEnum.PRGREP.getValue()) {
-			contentInclude.setSrc("view/role_inquiry.zul");
+			contentInclude.setSrc("view/report_progress.zul");
 		}else if (event.getTarget().getId() == PageEnum.CATREP.getValue()) {
 			contentInclude.setSrc("view/role_inquiry.zul");
 		}
