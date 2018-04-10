@@ -1,5 +1,6 @@
 package com.apps.pu.hibah;
 
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.zkoss.zkplus.spring.DelegatingVariableResolver;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listitem;
+import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
@@ -22,6 +24,7 @@ import com.apps.pu.hibah.services.ReportService;
 import com.apps.pu.hibah.ui.KeyValue;
 import com.apps.pu.hibah.ui.PopupDouble;
 import com.apps.pu.hibah.ui.SerializableSearchDelegateDoubleCriteria;
+import com.google.common.base.Strings;
 
 
 @VariableResolver(DelegatingVariableResolver.class)
@@ -39,11 +42,13 @@ public class ReportProgressComposser extends SelectorComposer<Window>{
 	@Wire
 	private Textbox txtPemda;
 	@Wire
-	private Intbox nilaiMin;
+	private Longbox nilaiMin;
 	@Wire
-	private Intbox nilaiMax;
+	private Longbox nilaiMax;
 	@Wire
 	private Jasperreport report;
+	@Wire
+	private Listbox lstType;
 	
 	@WireVariable(rewireOnActivate = true)
 	private ReportService reportServiceImpl;
@@ -76,6 +81,18 @@ public class ReportProgressComposser extends SelectorComposer<Window>{
 		listitem.setLabel(new String(Labels.getLabel("report.progress.diterima")));
 		listitem.setSelected(true);
 		listitem.setParent(lstStatus);
+		
+		listitem = new Listitem();
+		listitem.setValue("pdf");
+		listitem.setLabel(new String(Labels.getLabel("report.typepdf")));
+		listitem.setSelected(true);
+		listitem.setParent(lstType);
+		
+		listitem = new Listitem();
+		listitem.setValue("xls");
+		listitem.setLabel(new String(Labels.getLabel("report.typeexcel")));
+		listitem.setSelected(true);
+		listitem.setParent(lstType);
 		
 		bnbSatuanKerja.setTitle(Labels.getLabel("com.proficiencyLevel"));
 		bnbSatuanKerja.setSearchText1("Direktorat");
@@ -126,13 +143,19 @@ public class ReportProgressComposser extends SelectorComposer<Window>{
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		
-		parameters.put("pStatus", "Sedang Proses");
-		parameters.put("pSatker", null);
-		parameters.put("pPemda", null);
-		parameters.put("pNilaiMin", 0);
-		parameters.put("pNilaiMax", 300000000);
+		String typeReport = lstType.getSelectedItem().getValue();
+		Integer satker = bnbSatuanKerja.getKeyValue() == null ? null : (Integer) bnbSatuanKerja.getKeyValue().getKey();
+		String pemda = Strings.isNullOrEmpty(txtPemda.getValue()) ? null : txtPemda.getValue();
+		String satkerDesc = bnbSatuanKerja.getKeyValue() == null ? null : (String) bnbSatuanKerja.getKeyValue().getValue();
 		
-		report.setType("pdf");
+		parameters.put("pStatus", "Sedang Proses");
+		parameters.put("pSatker", satker);
+		parameters.put("pSatkerDesc", satkerDesc);
+		parameters.put("pPemda", pemda);
+		parameters.put("pNilaiMin", nilaiMin.getValue());
+		parameters.put("pNilaiMax", nilaiMax.getValue());
+		
+		report.setType(typeReport);
 		report.setParameters(parameters);
 		report.setSrc("report/sedangproses.jasper");
 		

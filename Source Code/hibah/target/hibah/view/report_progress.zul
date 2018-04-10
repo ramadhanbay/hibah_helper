@@ -25,10 +25,14 @@
 				<row>
 					<label value="${labels.report.nilai}"/>
 					<hbox>
-						<intbox width="250px" id="nilaiMin" value="0"></intbox>
+						<longbox width="250px" id="nilaiMin" value="0"></longbox>
 						<label> Sampai </label>
-						<intbox width="250px" id="nilaiMax" value="0"></intbox>
+						<longbox width="250px" id="nilaiMax" value="0"></longbox>
 					</hbox>
+				</row>
+				<row>
+					<label value="${labels.report.type}"/>
+					<listbox mold="select" width="250px" id="lstType" />
 				</row>
 				<row>
 					<space/>

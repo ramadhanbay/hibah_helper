@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sedangproses" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d40a23a7-ba83-42c1-b432-dcf2e00c2416">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sedangproses" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d40a23a7-ba83-42c1-b432-dcf2e00c2416">
 	<property name="ireport.zoom" value="1.1000000000000005"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -44,16 +44,16 @@
 		</box>
 	</style>
 	<subDataset name="Table Dataset 1" uuid="2a36a4ca-c265-4e7f-a49e-c3b5f1b348ca">
-		<parameter name="P_SATKER" class="java.lang.String">
+		<parameter name="P_SATKER" class="java.lang.Integer">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
 		<parameter name="P_PEMDA" class="java.lang.String">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
-		<parameter name="P_NILAI_MIN" class="java.lang.Integer">
+		<parameter name="P_NILAI_MIN" class="java.lang.Long">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
-		<parameter name="P_NILAI_MAX" class="java.lang.Integer">
+		<parameter name="P_NILAI_MAX" class="java.lang.Long">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
 		<queryString>
@@ -64,8 +64,9 @@ join hibah.direktorat dr on dr.id_direktorat = st.id_direktorat
 join hibah.barang br on br.id_barang = tr.id_barang
 where
 (st.id_satker = $P{P_SATKER} OR $P{P_SATKER} is NULL)
-AND (upper(tr.penerima) like $P{P_PEMDA} OR $P{P_PEMDA} is NULL)
-AND (tr.nilai_perolehan >= $P{P_NILAI_MIN} and tr.nilai_perolehan <= $P{P_NILAI_MAX})]]>
+AND (upper(tr.penerima) like upper(concat('%',$P{P_PEMDA},'%')) OR $P{P_PEMDA} is NULL)
+AND (tr.nilai_perolehan >= $P{P_NILAI_MIN} OR $P{P_NILAI_MIN} IS NULL)
+and (tr.nilai_perolehan <= $P{P_NILAI_MAX} OR $P{P_NILAI_MAX} IS NULL)]]>
 		</queryString>
 		<field name="direktorat" class="java.lang.String"/>
 		<field name="satker" class="java.lang.String"/>
@@ -76,10 +77,14 @@ AND (tr.nilai_perolehan >= $P{P_NILAI_MIN} and tr.nilai_perolehan <= $P{P_NILAI_
 		</field>
 	</subDataset>
 	<parameter name="pStatus" class="java.lang.String"/>
-	<parameter name="pSatker" class="java.lang.String"/>
+	<parameter name="pSatker" class="java.lang.Integer"/>
 	<parameter name="pPemda" class="java.lang.String"/>
-	<parameter name="pNilaiMin" class="java.lang.Integer"/>
-	<parameter name="pNilaiMax" class="java.lang.Integer"/>
+	<parameter name="pNilaiMin" class="java.lang.Long"/>
+	<parameter name="pNilaiMax" class="java.lang.Long"/>
+	<parameter name="pSatkerDesc" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -121,44 +126,34 @@ AND (tr.nilai_perolehan >= $P{P_NILAI_MIN} and tr.nilai_perolehan <= $P{P_NILAI_
 				<textElement/>
 				<textFieldExpression><![CDATA[$P{pStatus}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement uuid="bd6558ec-7ea8-43f3-838a-1871918fb6df" x="99" y="19" width="100" height="20"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$P{pSatker}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{pSatkerDesc}==null?"-":$P{pSatkerDesc}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="">
 				<reportElement uuid="68c2fe2d-f8bb-4a28-ab99-e61d25dff641" x="99" y="38" width="100" height="20"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$P{pPemda}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{pPemda}==null?"-":$P{pPemda}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="83263c5c-d677-46b3-be9b-3371dd967dde" x="99" y="57" width="100" height="20"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$P{pNilaiMin}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="4f60f021-1a26-4d10-b081-6f25d5dd012a" x="198" y="57" width="14" height="20"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[-]]></text>
-			</staticText>
-			<textField>
-				<reportElement uuid="66a07f2b-8d17-47fd-a9df-55c4cad062c0" x="211" y="57" width="100" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$P{pNilaiMax}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{pNilaiMin} + "  -  " + $P{pNilaiMax}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<summary>
 		<band height="50">
 			<componentElement>
-				<reportElement uuid="3aba32d6-a7d9-4f05-ad4e-becd33d531fa" key="table 1" style="table 1" x="0" y="0" width="540" height="50"/>
+				<reportElement uuid="3aba32d6-a7d9-4f05-ad4e-becd33d531fa" key="table 1" style="table 1" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="540" height="50"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
 					<datasetRun subDataset="Table Dataset 1" uuid="cc71d977-c476-4f87-83ad-e695b3277373">
 						<datasetParameter name="P_SATKER">
 							<datasetParameterExpression><![CDATA[$P{pSatker}]]></datasetParameterExpression>
 						</datasetParameter>
 						<datasetParameter name="P_PEMDA">
-							<datasetParameterExpression><![CDATA[$P{pPemda}]]></datasetParameterExpression>
+							<datasetParameterExpression><![CDATA[$P{pPemda}.length() == 0 ? null : $P{pPemda}]]></datasetParameterExpression>
 						</datasetParameter>
 						<datasetParameter name="P_NILAI_MIN">
 							<datasetParameterExpression><![CDATA[$P{pNilaiMin}]]></datasetParameterExpression>
@@ -177,8 +172,8 @@ AND (tr.nilai_perolehan >= $P{P_NILAI_MIN} and tr.nilai_perolehan <= $P{P_NILAI_
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="20">
-							<textField>
-								<reportElement uuid="19128aad-443f-43ce-aed3-1884d8813006" x="0" y="0" width="90" height="20"/>
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="19128aad-443f-43ce-aed3-1884d8813006" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 							</textField>
@@ -193,8 +188,8 @@ AND (tr.nilai_perolehan >= $P{P_NILAI_MIN} and tr.nilai_perolehan <= $P{P_NILAI_
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="20">
-							<textField>
-								<reportElement uuid="7bd9a6db-02fd-42d2-bcf3-972eb7e2749a" x="0" y="0" width="90" height="20"/>
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="7bd9a6db-02fd-42d2-bcf3-972eb7e2749a" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$F{direktorat}]]></textFieldExpression>
 							</textField>
@@ -209,8 +204,8 @@ AND (tr.nilai_perolehan >= $P{P_NILAI_MIN} and tr.nilai_perolehan <= $P{P_NILAI_
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="20">
-							<textField>
-								<reportElement uuid="3ff63dd8-4d6d-4949-93ab-a4b33fd61693" x="0" y="0" width="90" height="20"/>
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="3ff63dd8-4d6d-4949-93ab-a4b33fd61693" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$F{satker}]]></textFieldExpression>
 							</textField>
@@ -225,8 +220,8 @@ AND (tr.nilai_perolehan >= $P{P_NILAI_MIN} and tr.nilai_perolehan <= $P{P_NILAI_
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="20">
-							<textField>
-								<reportElement uuid="3eb393d1-5ea8-4cc8-a515-74fb76c69aee" x="0" y="0" width="90" height="20"/>
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="3eb393d1-5ea8-4cc8-a515-74fb76c69aee" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$F{pemda}]]></textFieldExpression>
 							</textField>
@@ -241,8 +236,8 @@ AND (tr.nilai_perolehan >= $P{P_NILAI_MIN} and tr.nilai_perolehan <= $P{P_NILAI_
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="20">
-							<textField>
-								<reportElement uuid="d691953b-3f31-4552-9aa6-01b05029a7bc" x="0" y="0" width="90" height="20"/>
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="d691953b-3f31-4552-9aa6-01b05029a7bc" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$F{bmn}]]></textFieldExpression>
 							</textField>
@@ -257,8 +252,8 @@ AND (tr.nilai_perolehan >= $P{P_NILAI_MIN} and tr.nilai_perolehan <= $P{P_NILAI_
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="20">
-							<textField>
-								<reportElement uuid="9375cdd5-be78-4516-a4dd-925dfcab206d" x="0" y="0" width="90" height="20"/>
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="9375cdd5-be78-4516-a4dd-925dfcab206d" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$F{nilai_perolehan}]]></textFieldExpression>
 							</textField>
