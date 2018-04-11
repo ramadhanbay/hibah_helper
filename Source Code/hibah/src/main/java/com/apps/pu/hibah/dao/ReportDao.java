@@ -1,5 +1,7 @@
 package com.apps.pu.hibah.dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,6 +15,9 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.JoinType;
 
+import org.hibernate.Session;
+import org.hibernate.engine.spi.SessionFactoryImplementor;
+import org.hibernate.service.jdbc.connections.spi.ConnectionProvider;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -85,6 +90,19 @@ public class ReportDao {
 		}catch (NoResultException e) {
 			return 0;
 		}
+	}
+	
+	public Connection getConnection() throws SQLException {
+		Session session = em.unwrap(Session.class);
+		
+		SessionFactoryImplementor sfi = (SessionFactoryImplementor) session.getSessionFactory();
+		
+		ConnectionProvider cp = sfi.getConnectionProvider();
+		
+		Connection conn = cp.getConnection();
+		
+		return conn;
+
 	}
 
 }

@@ -17,6 +17,7 @@ import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Longbox;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
@@ -140,24 +141,47 @@ public class ReportProgressComposser extends SelectorComposer<Window>{
 
 	@Listen("onClick=#btnReport")
 	public void onReport(){
-
+		
 		Map<String, Object> parameters = new HashMap<String, Object>();
+		
+		if(lstStatus.getSelectedItem().getValue().toString().equals("-1")) {
+			Messagebox.show("Mohon Pilih Status Laporan");
+			return;
+		}else if(lstStatus.getSelectedItem().getValue().toString().equals("1")) {
+			parameters.put("pStatus", "Sedang Proses");
+			report.setSrc("report/sedangproses.jasper");
+		}else if(lstStatus.getSelectedItem().getValue().toString().equals("2")) {
+			parameters.put("pStatus", "Sudah Terbit Persetujuan Hibah");
+			report.setSrc("report/terbit_persetujuan.jasper");
+		}else if(lstStatus.getSelectedItem().getValue().toString().equals("3")) {
+			parameters.put("pStatus", "Sudah Diserah Terimakan");
+			report.setSrc("report/serah_terimakan.jasper");
+		}
+
+		
 		
 		String typeReport = lstType.getSelectedItem().getValue();
 		Integer satker = bnbSatuanKerja.getKeyValue() == null ? null : (Integer) bnbSatuanKerja.getKeyValue().getKey();
 		String pemda = Strings.isNullOrEmpty(txtPemda.getValue()) ? null : txtPemda.getValue();
-		String satkerDesc = bnbSatuanKerja.getKeyValue() == null ? null : (String) bnbSatuanKerja.getKeyValue().getValue();
+		String satkerDesc = bnbSatuanKerja.getKeyValue() == null ? null : (String) bnbSatuanKerja.getKeyValue().getDescription();
 		
-		parameters.put("pStatus", "Sedang Proses");
+		
 		parameters.put("pSatker", satker);
 		parameters.put("pSatkerDesc", satkerDesc);
 		parameters.put("pPemda", pemda);
 		parameters.put("pNilaiMin", nilaiMin.getValue());
 		parameters.put("pNilaiMax", nilaiMax.getValue());
 		
+		try {
+			report.setDataConnection(reportServiceImpl.getConnection());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		report.setType(typeReport);
 		report.setParameters(parameters);
-		report.setSrc("report/sedangproses.jasper");
+		
 		
 	}
 }

@@ -25,9 +25,9 @@
 				<row>
 					<label value="${labels.report.nilai}"/>
 					<hbox>
-						<longbox width="250px" id="nilaiMin" value="0"></longbox>
+						<longbox width="250px" id="nilaiMin"></longbox>
 						<label> Sampai </label>
-						<longbox width="250px" id="nilaiMax" value="0"></longbox>
+						<longbox width="250px" id="nilaiMax"></longbox>
 					</hbox>
 				</row>
 				<row>

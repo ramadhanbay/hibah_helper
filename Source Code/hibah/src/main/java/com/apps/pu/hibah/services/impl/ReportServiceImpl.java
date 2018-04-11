@@ -1,5 +1,7 @@
 package com.apps.pu.hibah.services.impl;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,12 @@ public class ReportServiceImpl implements ReportService{
 	public int countSatkerByNamePaging(String direktoratName, String SatkerName) {
 		// TODO Auto-generated method stub
 		return dao.countSatkerByNamePaging(direktoratName, SatkerName);
+	}
+
+	@Override
+	public Connection getConnection() throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.getConnection();
 	}
 	
 	
