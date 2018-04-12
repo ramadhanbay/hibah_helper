@@ -11,4 +11,6 @@ public interface ReportService {
 	List<KeyValue> getSatkerByNamePaging(String direktoratName, String SatkerName, int limit, int offset);
 	int countSatkerByNamePaging(String direktoratName, String SatkerName);
 	Connection getConnection() throws SQLException;
+	List<KeyValue> getDirektoratByNamePaging(String searchCriteria, int limit, int offset);
+	int countDirektoratByNamePaging(String searchCriteria);
 }

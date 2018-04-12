@@ -105,4 +105,54 @@ public class ReportDao {
 
 	}
 
+	public List<KeyValue> getDirektoratByNamePaging(String direktoratName, int limit, int offset) {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<KeyValue> q = cb.createQuery(KeyValue.class);
+		Root<Direktorat> dirRoot = q.from(Direktorat.class);
+		
+		q.multiselect(dirRoot.get("idDirektorat"),dirRoot.get("name"),dirRoot.get("name"));
+		
+		Expression<String> dirName = dirRoot.get("name");
+		
+		q.where(
+				cb.and(
+						cb.like(cb.upper(dirName), direktoratName.toUpperCase())
+						)
+				);
+		
+		TypedQuery<KeyValue> tq = em.createQuery(q);
+		tq.setFirstResult(offset);
+		tq.setMaxResults(limit);
+		
+		try{
+			List<KeyValue> result = tq.getResultList();
+			return result;
+		}catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	public int countDirektoratByNamePaging(String direktoratName) {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<KeyValue> q = cb.createQuery(KeyValue.class);
+		Root<Direktorat> dirRoot = q.from(Direktorat.class);
+		
+		q.multiselect(dirRoot.get("idDirektorat"),dirRoot.get("name"),dirRoot.get("name"));
+		
+		Expression<String> dirName = dirRoot.get("name");
+		
+		q.where(
+				cb.and(
+						cb.like(cb.upper(dirName), direktoratName.toUpperCase())
+						)
+				);
+		
+		try{
+			List<KeyValue> result = em.createQuery(q).getResultList();
+			return result.size();
+		}catch (NoResultException e) {
+			return 0;
+		}
+	}
+
 }

@@ -40,17 +40,36 @@ public class AppComposser extends SelectorComposer<Window> {
 	private void initPage() {
 		// TODO Auto-generated method stub
 		
+		//===== HOME ========
 		Navitem homeItem = new Navitem();
 		homeItem.setLabel("Home");
 		homeItem.setIconSclass("z-icon-home");
 		homeItem.setId(PageEnum.HMPG.getValue());
 		homeItem.setParent(navbar);
 		
+		//===== INPUT DATA ========
 		Nav nav = new Nav();
 		nav.setLabel("Input Data");
-		nav.setIconSclass("z-icon-group");		
+		nav.setIconSclass("z-icon-group");	
+		nav.setBadgeText("3");
 		nav.setParent(navbar);
 		
+		Navitem itemInputBangkim = new Navitem();
+		itemInputBangkim.setLabel(PageEnum.INPDIR.getValue());
+		itemInputBangkim.setId(PageEnum.INPDIR.getValue());
+		itemInputBangkim.setParent(nav);
+		
+		Navitem itemSatker = new Navitem();
+		itemSatker.setLabel("Satuan Kerja");
+		itemSatker.setId(PageEnum.INPSAT.getValue());
+		itemSatker.setParent(nav);
+		
+		Navitem itemBarang = new Navitem();
+		itemBarang.setLabel(PageEnum.INPBAR.getValue());
+		itemBarang.setId(PageEnum.INPBAR.getValue());
+		itemBarang.setParent(nav);
+		
+		//===== Report ========
 		Nav navReport = new Nav();
 		navReport.setLabel("Laporan");
 		navReport.setIconSclass("z-icon-book");
@@ -63,10 +82,11 @@ public class AppComposser extends SelectorComposer<Window> {
 		itemProgress.setParent(navReport);
 		
 		Navitem itemCategories = new Navitem();
-		itemCategories.setLabel("Kategori");
+		itemCategories.setLabel("Entity");
 		itemCategories.setId(PageEnum.CATREP.getValue());
 		itemCategories.setParent(navReport);
 		
+		//===== ADMIN ========
 		Nav navAdmin = new Nav();
 		navAdmin.setLabel("Administrasi");
 		navAdmin.setIconSclass("z-icon-star");
@@ -91,13 +111,21 @@ public class AppComposser extends SelectorComposer<Window> {
 		if(event.getTarget().getId() == PageEnum.HMPG.getValue()) {
 			contentInclude.setSrc("greeting.zul");
 		}else if(event.getTarget().getId() == PageEnum.USRADM.getValue()) {
-			contentInclude.setSrc("index.zul");
+			contentInclude.setSrc("greeting.zul");
 		}else if (event.getTarget().getId() == PageEnum.RLADM.getValue()) {
 			contentInclude.setSrc("view/role_inquiry.zul");
 		}else if (event.getTarget().getId() == PageEnum.PRGREP.getValue()) {
 			contentInclude.setSrc("view/report_progress.zul");
 		}else if (event.getTarget().getId() == PageEnum.CATREP.getValue()) {
-			contentInclude.setSrc("view/role_inquiry.zul");
+			contentInclude.setSrc("view/report_entity.zul");
+		}else if (event.getTarget().getId() == PageEnum.INPDIR.getValue()) {
+			contentInclude.setSrc("view/direktorat_inquiry.zul");
+		}else if (event.getTarget().getId() == PageEnum.INPSAT.getValue()) {
+			contentInclude.setSrc("view/satker_inquiry.zul");
+		}
+		
+		else {
+			contentInclude.setSrc("greeting.zul");
 		}
 	}
 

@@ -19,8 +19,8 @@ apply="com.apps.pu.hibah.ListOfValueDoubleComposer">
 			<row>
 				<label />
 				<hlayout>
-				<button id="btnFind" label="Find" mold="trendy" />
-				<button id="btnDeselect" label="${labels.common.deselect}" mold="trendy" />
+				<button id="btnFind" label="${labels.common.find}" mold="trendy" image="${labels.image.link.search}" />
+				<button id="btnDeselect" label="${labels.common.deselect}" mold="trendy" image="${labels.image.link.cancel}" />
 				</hlayout>
 			</row>
 		</rows>

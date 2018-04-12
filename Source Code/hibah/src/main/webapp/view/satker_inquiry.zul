@@ -1,0 +1,55 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="satkerWin" border="none" apply="com.apps.pu.hibah.SatkerInquiryComposser">
+<groupbox closable="false" mold="3d">
+		<caption label="${labels.satker.name}" >
+		</caption>
+		<grid sclass="form-entry">
+			<columns>
+				<column align="right" width="200px"/>
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="${labels.Direktorat.name}"/>
+					<bandbox id="bnbDirektorat" use="com.apps.pu.hibah.ui.PopupSingle" width="250px"></bandbox>
+				</row>
+				<row>
+					<label value="${labels.satker.name}"/>
+					<textbox maxlength="100" width="250px" id="txtSatker" />
+				</row>
+				<row>
+					<space/>
+					<hbox>
+						<button id="btnFind" label="${labels.common.search}" mold="trendy" image="${labels.image.link.search}" />
+						<button id="btnNew" label="${labels.common.newSetup}" mold="trendy" image="${labels.image.link.add}" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<space height="10px"/>
+		<listbox id="lstDir" mold="paging" emptyMessage="${labels.common.dataNotFound}" pagingPosition="both" pageSize="20">
+			<listhead menupopup="auto">
+				<listheader label="${labels.common.action}" width="75px"/>
+				<listheader label="${labels.Direktorat.name}" sort="auto(name)" />
+				<listheader label="${labels.satker.name}" sort="auto(name)" />
+				<listheader label="${labels.common.description}"   sort="auto(desc)"/>		
+				<listheader label="${labels.common.lastUpdateDate}" sort="auto(updateDate)"/>
+				<listheader label="${labels.common.lastUpdateBy}" sort="auto(updateBy)" />
+			</listhead>
+			<template name="model">
+				<listitem value="${each}">
+					<listcell>
+						<a label="${labels.common.detail}" style="text-decoration:underline ;color:blue"  forward="onDetail(${each})"/>
+					</listcell>	
+					<listcell label="${each.name}"/>
+					<listcell label="${each.name}"/>
+					<listcell label="${each.desc}"/>
+					<listcell label="${each.updateDate}"/>
+					<listcell label="${each.updateBy}"/>
+				</listitem>
+			</template>
+		</listbox>
+	</groupbox>
+</window>
+</zk>

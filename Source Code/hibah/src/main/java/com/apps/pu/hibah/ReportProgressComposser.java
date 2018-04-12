@@ -1,6 +1,5 @@
 package com.apps.pu.hibah;
 
-import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,6 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkex.zul.Jasperreport;
 import org.zkoss.zkplus.spring.DelegatingVariableResolver;
-import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Longbox;
@@ -95,7 +93,7 @@ public class ReportProgressComposser extends SelectorComposer<Window>{
 		listitem.setSelected(true);
 		listitem.setParent(lstType);
 		
-		bnbSatuanKerja.setTitle(Labels.getLabel("com.proficiencyLevel"));
+		bnbSatuanKerja.setTitle(Labels.getLabel("report.satuankerja"));
 		bnbSatuanKerja.setSearchText1("Direktorat");
 		bnbSatuanKerja.setHeaderLabel1("Direktorat");
 		bnbSatuanKerja.setSearchText2("Satker");

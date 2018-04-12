@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="terbit_persetujuan" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4cf0fe1c-11d8-41bf-98a5-2871a091db1e">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="terbit_persetujuan" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4cf0fe1c-11d8-41bf-98a5-2871a091db1e">
 	<property name="ireport.zoom" value="1.4641000000000008"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -37,7 +37,7 @@
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
 		<queryString>
-			<![CDATA[select dr.name direktorat, st.name satker, tr.penerima pemda, br.nama_barang bmn, tr.nilai_perolehan from
+			<![CDATA[select dr.name direktorat, st.name satker, tr.penerima pemda, br.nama_barang bmn, tr.nilai_perolehan,tr.persetujuan_pmk, tr.persetujuan_kemenkeu, tr.sk_penetapan_hibah from
 hibah.transaksi tr
 join hibah.satker st on tr.id_satker = st.id_satker
 join hibah.direktorat dr on dr.id_direktorat = st.id_direktorat
@@ -55,6 +55,15 @@ AND (persetujuan_pmk is not null or (persetujuan_kemenkeu is not null and sk_pen
 		<field name="pemda" class="java.lang.String"/>
 		<field name="bmn" class="java.lang.String"/>
 		<field name="nilai_perolehan" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="persetujuan_pmk" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="persetujuan_kemenkeu" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="sk_penetapan_hibah" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 	</subDataset>
@@ -104,7 +113,7 @@ AND (persetujuan_pmk is not null or (persetujuan_kemenkeu is not null and sk_pen
 				<textElement/>
 				<text><![CDATA[Satuan Kerja]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="43bdeb26-8e15-4c75-b148-459bfd642c59" x="99" y="27" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$P{pStatus}]]></textFieldExpression>
@@ -124,7 +133,7 @@ AND (persetujuan_pmk is not null or (persetujuan_kemenkeu is not null and sk_pen
 	<summary>
 		<band height="56" splitType="Stretch">
 			<componentElement>
-				<reportElement uuid="bf3efc56-c1b7-46fa-afe3-19d885101d90" key="table" style="table" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="540" height="50"/>
+				<reportElement uuid="bf3efc56-c1b7-46fa-afe3-19d885101d90" key="table" style="table" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="540" height="55"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
 					<datasetRun subDataset="Table Dataset 1" uuid="ee007a8d-ec22-4045-a2f5-9a4c2f0ef43a">
 						<datasetParameter name="P_SATKER">
@@ -142,98 +151,146 @@ AND (persetujuan_pmk is not null or (persetujuan_kemenkeu is not null and sk_pen
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
 					<jr:column width="90" uuid="89149ece-a617-4940-8b33-ab3ad9810015">
-						<jr:columnHeader style="table_CH" height="30">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement uuid="2b90ea85-9d9b-4d6b-947f-ac30429763db" x="0" y="0" width="90" height="30"/>
-								<textElement/>
+								<textElement textAlignment="Center"/>
 								<text><![CDATA[No]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="20">
+						<jr:detailCell style="table_TD" height="22" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="19128aad-443f-43ce-aed3-1884d8813006" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
+								<reportElement uuid="19128aad-443f-43ce-aed3-1884d8813006" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="90" uuid="aa7ac851-c028-4a12-a78d-028b6b472b88">
-						<jr:columnHeader style="table_CH" height="30">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement uuid="0be0a869-13d0-44bc-a238-842fcede3576" x="0" y="0" width="90" height="30"/>
-								<textElement/>
+								<textElement textAlignment="Center"/>
 								<text><![CDATA[Direktorat]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="20">
+						<jr:detailCell style="table_TD" height="22" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="7bd9a6db-02fd-42d2-bcf3-972eb7e2749a" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
+								<reportElement uuid="7bd9a6db-02fd-42d2-bcf3-972eb7e2749a" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$F{direktorat}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="90" uuid="1d26ed09-75b8-4ca5-a4b2-d3d7a32388d4">
-						<jr:columnHeader style="table_CH" height="30">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement uuid="5f2528d7-e3a9-4d2d-8820-611016327e94" x="0" y="0" width="90" height="30"/>
-								<textElement/>
+								<textElement textAlignment="Center"/>
 								<text><![CDATA[Satker]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="20">
+						<jr:detailCell style="table_TD" height="22" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="3ff63dd8-4d6d-4949-93ab-a4b33fd61693" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
+								<reportElement uuid="3ff63dd8-4d6d-4949-93ab-a4b33fd61693" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$F{satker}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="90" uuid="0f047e86-ac17-4bf8-8905-609745d01781">
-						<jr:columnHeader style="table_CH" height="30">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement uuid="21b1706a-38cb-466c-b73d-b3d1ed367a0d" x="0" y="0" width="90" height="30"/>
-								<textElement/>
+								<textElement textAlignment="Center"/>
 								<text><![CDATA[Pemda]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="20">
+						<jr:detailCell style="table_TD" height="22" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="3eb393d1-5ea8-4cc8-a515-74fb76c69aee" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
+								<reportElement uuid="3eb393d1-5ea8-4cc8-a515-74fb76c69aee" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$F{pemda}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="90" uuid="bd91d2cf-7c82-425f-8156-17758d48d552">
-						<jr:columnHeader style="table_CH" height="30">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement uuid="e156a64b-0c75-4156-8a74-31669d9b55e0" x="0" y="0" width="90" height="30"/>
-								<textElement/>
+								<textElement textAlignment="Center"/>
 								<text><![CDATA[BMN]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="20">
+						<jr:detailCell style="table_TD" height="22" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="d691953b-3f31-4552-9aa6-01b05029a7bc" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
+								<reportElement uuid="d691953b-3f31-4552-9aa6-01b05029a7bc" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$F{bmn}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="90" uuid="7b2ecae8-0922-4923-ae42-b4caf9acae77">
-						<jr:columnHeader style="table_CH" height="30">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement uuid="2755d403-894d-4c51-a6ab-5f28c31ff6c8" x="0" y="0" width="90" height="30"/>
-								<textElement/>
+								<textElement textAlignment="Center"/>
 								<text><![CDATA[Nilai]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="20">
+						<jr:detailCell style="table_TD" height="22" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="9375cdd5-be78-4516-a4dd-925dfcab206d" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="20"/>
+								<reportElement uuid="9375cdd5-be78-4516-a4dd-925dfcab206d" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$F{nilai_perolehan}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ed5d830e-4a67-413b-a7e3-08e14d79a61b">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="2755d403-894d-4c51-a6ab-5f28c31ff6c8" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Persetujuan (PMK4)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="b67622c9-c5ca-407c-826f-9ff422bbec50" x="0" y="0" width="90" height="22"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{persetujuan_pmk}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="a89a6cef-223e-4054-b048-aba586d703c7">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="2755d403-894d-4c51-a6ab-5f28c31ff6c8" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Persetujuan Kemenkeu]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="f9d53681-b266-4d6f-b757-295664a70739" x="0" y="0" width="90" height="22"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{persetujuan_kemenkeu}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c9a2fc21-0632-4947-9060-1f21c1e5b93b">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="2755d403-894d-4c51-a6ab-5f28c31ff6c8" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[SK Penetapan Hibah]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="6a1cead5-fc15-408d-84dd-38df4bc3b6f8" x="0" y="0" width="90" height="22"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{sk_penetapan_hibah}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

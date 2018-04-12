@@ -36,6 +36,18 @@ public class ReportServiceImpl implements ReportService{
 		// TODO Auto-generated method stub
 		return dao.getConnection();
 	}
+
+	@Override
+	public List<KeyValue> getDirektoratByNamePaging(String searchCriteria, int limit, int offset) {
+		// TODO Auto-generated method stub
+		return dao.getDirektoratByNamePaging(searchCriteria, limit, offset);
+	}
+
+	@Override
+	public int countDirektoratByNamePaging(String searchCriteria) {
+		// TODO Auto-generated method stub
+		return dao.countDirektoratByNamePaging(searchCriteria);
+	}
 	
 	
 

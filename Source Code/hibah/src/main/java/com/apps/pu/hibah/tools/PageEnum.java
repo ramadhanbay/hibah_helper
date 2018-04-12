@@ -6,7 +6,10 @@ public enum PageEnum {
 	USRADM("User Admin"),
 	RLADM("Role Admin"),
 	PRGREP("Progress"),
-	CATREP("Kategori")
+	CATREP("Kategori"),
+	INPDIR("Direktorat"),
+	INPSAT("Satker"),
+	INPBAR("Barang"),
 	;
 	
 	private String value;
