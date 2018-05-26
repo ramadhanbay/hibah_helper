@@ -1,16 +1,12 @@
 package com.apps.pu.hibah.entity;
-// Generated 08-Apr-2018 12:48:59 by Hibernate Tools 3.6.0.Final
+// Generated 27-May-2018 02:08:30 by Hibernate Tools 3.6.0.Final
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,12 +25,11 @@ public class Direktorat implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer idDirektorat;
 	private String name;
-	private String desc;
+	private String description;
 	private Date updateDate;
 	private String updateBy;
 	private Date createDate;
 	private String createBy;
-	private Set<Satker> satkers = new HashSet<Satker>(0);
 
 	public Direktorat() {
 	}
@@ -47,15 +42,14 @@ public class Direktorat implements java.io.Serializable {
 		this.createBy = createBy;
 	}
 
-	public Direktorat(String name, String desc, Date updateDate, String updateBy, Date createDate, String createBy,
-			Set<Satker> satkers) {
+	public Direktorat(String name, String description, Date updateDate, String updateBy, Date createDate,
+			String createBy) {
 		this.name = name;
-		this.desc = desc;
+		this.description = description;
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
 		this.createDate = createDate;
 		this.createBy = createBy;
-		this.satkers = satkers;
 	}
 
 	@Id
@@ -79,13 +73,13 @@ public class Direktorat implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "desc", length = 1000)
-	public String getDesc() {
-		return this.desc;
+	@Column(name = "description", length = 1000)
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -124,15 +118,6 @@ public class Direktorat implements java.io.Serializable {
 
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "direktorat")
-	public Set<Satker> getSatkers() {
-		return this.satkers;
-	}
-
-	public void setSatkers(Set<Satker> satkers) {
-		this.satkers = satkers;
 	}
 
 }

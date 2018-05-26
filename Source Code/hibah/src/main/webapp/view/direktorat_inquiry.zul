@@ -28,7 +28,7 @@
 			<listhead menupopup="auto">
 				<listheader label="${labels.common.action}" width="75px"/>
 				<listheader label="${labels.Direktorat.name}" sort="auto(name)" />
-				<listheader label="${labels.common.description}"   sort="auto(desc)"/>		
+				<listheader label="${labels.common.description}"   sort="auto(description)"/>		
 				<listheader label="${labels.common.lastUpdateDate}" sort="auto(updateDate)"/>
 				<listheader label="${labels.common.lastUpdateBy}" sort="auto(updateBy)" />
 			</listhead>
@@ -38,7 +38,7 @@
 						<a label="${labels.common.detail}" style="text-decoration:underline ;color:blue"  forward="onDetail(${each})"/>
 					</listcell>	
 					<listcell label="${each.name}"/>
-					<listcell label="${each.desc}"/>
+					<listcell label="${each.description}"/>
 					<listcell label="${each.updateDate}"/>
 					<listcell label="${each.updateBy}"/>
 				</listitem>

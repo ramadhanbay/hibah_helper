@@ -43,4 +43,29 @@ public class DirektoratDao {
 		
 	}
 
+	@Transactional
+	public Direktorat save(Direktorat direktorat) {
+		
+		if(direktorat.getIdDirektorat()!= null) {
+			em.merge(direktorat);
+		}else {
+			em.persist(direktorat);
+		}
+		
+		em.flush();
+		
+		return direktorat;
+		
+	}
+	
+	@Transactional
+	public Direktorat delete(Direktorat direktorat) {
+		
+		direktorat = em.merge(direktorat);
+		em.remove(direktorat);
+		em.flush();
+		
+		return direktorat;		
+	}
+
 }

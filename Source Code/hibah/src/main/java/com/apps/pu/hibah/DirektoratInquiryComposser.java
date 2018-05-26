@@ -1,8 +1,11 @@
 package com.apps.pu.hibah;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.zkoss.util.resource.Labels;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.event.SerializableEventListener;
@@ -47,18 +50,20 @@ public class DirektoratInquiryComposser extends SelectorComposer<Window>{
 	@Listen("onClick=#btnFind")
 	public void onFind(){
 		if(txtDirName.getText().equals("")) {
-			Messagebox.show(Labels.getLabel("common.confirmationInquiry"), Labels.getLabel("common.confirmationTitle"), Messagebox.YES | Messagebox.NO, null, new SerializableEventListener<Event>() {
+			Messagebox.show(Labels.getLabel("common.confirmationInquiry"), 
+					Labels.getLabel("common.confirmationTitle"), 
+					Messagebox.YES | Messagebox.NO, null, 
+					new SerializableEventListener<Event>() {
 				
-				private static final long serialVersionUID = 1L;
-				
-				@Override
-				public void onEvent(Event event) throws Exception {
-					int resultButton = Integer.parseInt(event.getData().toString());
-					if(resultButton == Messagebox.YES) {
-						search();
-					}
-				}
-			});
+						private static final long serialVersionUID = 1L;
+						
+						public void onEvent(Event event) throws Exception {
+							int resultButton = Integer.parseInt(event.getData().toString());
+							if(resultButton == Messagebox.YES) {
+								search();
+							}
+						}
+					});
 		} else {
 			search();
 		}
@@ -77,12 +82,19 @@ public class DirektoratInquiryComposser extends SelectorComposer<Window>{
 	
 	@Listen("onDetail= #direktoratWin")
 	public void onDetail(ForwardEvent event){
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put(Direktorat.class.getName(), event.getData());
 		
+		Executions.createComponents("view/direktorat_setup.zul", getSelf().getParent(), param);
+		getSelf().detach();
 	}
 	
 	@Listen("onClick = #btnNew")
 	public void addNew(){
-		
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("NEW", "NEW");
+		Executions.createComponents("view/direktorat_setup.zul", getSelf().getParent(), param);
+		getSelf().detach();
 	}
 
 }

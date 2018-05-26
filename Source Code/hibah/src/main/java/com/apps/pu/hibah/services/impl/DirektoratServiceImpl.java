@@ -23,4 +23,14 @@ public class DirektoratServiceImpl implements DirektoratService {
 		return dao.getDirektoratLikeName(dirName);
 	}
 
+	public void save(Direktorat direktorat) {
+		dao.save(direktorat);
+		
+	}
+
+	public void delete(Direktorat direktorat) {
+		dao.delete(direktorat);
+		
+	}
+
 }

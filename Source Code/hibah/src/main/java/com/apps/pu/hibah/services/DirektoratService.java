@@ -8,4 +8,8 @@ public interface DirektoratService {
 
 	List<Direktorat> findDirektoratLikeName(String dirName);
 
+	void save(Direktorat direktorat);
+
+	void delete(Direktorat direktorat);
+
 }
