@@ -56,13 +56,14 @@ public class DirektoratInquiryComposser extends SelectorComposer<Window>{
 					new SerializableEventListener<Event>() {
 				
 						private static final long serialVersionUID = 1L;
-						
+
 						public void onEvent(Event event) throws Exception {
 							int resultButton = Integer.parseInt(event.getData().toString());
 							if(resultButton == Messagebox.YES) {
 								search();
-							}
+							}							
 						}
+						
 					});
 		} else {
 			search();

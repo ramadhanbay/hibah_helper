@@ -135,7 +135,6 @@ public class RoleSetupComposser extends SelectorComposer<Window>{
 				new SerializableEventListener<Event>() {				
 			private static final long serialVersionUID = 1L;
 
-			@Override
 			public void onEvent(Event event) throws Exception {
 				if (event.getName().equals("onYes")) {
 					try{
@@ -147,8 +146,10 @@ public class RoleSetupComposser extends SelectorComposer<Window>{
 					}catch (Exception e) {
 						e.printStackTrace();
 					}
-				}
+				}				
 			}
+
+			
 		});
 	}
 	

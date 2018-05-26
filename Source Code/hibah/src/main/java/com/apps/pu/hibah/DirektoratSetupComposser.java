@@ -20,6 +20,7 @@ import org.zkoss.zul.Window;
 
 import com.apps.pu.hibah.entity.Direktorat;
 import com.apps.pu.hibah.services.DirektoratService;
+import com.apps.pu.hibah.tools.ErrorMessageUtil;
 import com.apps.pu.hibah.validation.DirektoratValidation;
 import com.apps.pu.hibah.validation.ValidationException;
 
@@ -168,25 +169,13 @@ public class DirektoratSetupComposser extends SelectorComposer<Window>{
 	}
 	
 	private void hideError(){
-//		ErrorMessageUtil.clearErrorMessage(txtGroupType);
-//		ErrorMessageUtil.clearErrorMessage(lstCompetencyType);
-//		ErrorMessageUtil.clearErrorMessage(bnbProficiencyLevel);
-//		ErrorMessageUtil.clearErrorMessage(errorMessage);
-//		ErrorMessageUtil.clearErrorMessage(dtbFrom);
-//		ErrorMessageUtil.clearErrorMessage(dtbTo);
+		ErrorMessageUtil.clearErrorMessage(txtName);
+		ErrorMessageUtil.clearErrorMessage(txtDescription);
 	}
 	
 	private void showError(ValidationException e){
-//		ErrorMessageUtil.setErrorMessage(txtGroupType, e.getMessage(CompetencyGroupValidator.COMPETENCY_GROUP_TYPE_NULL));
-//		ErrorMessageUtil.setErrorMessage(txtGroupType, e.getMessage(CompetencyGroupValidator.COMPETENCY_GROUP_NAME_TAKEN));
-//		ErrorMessageUtil.setErrorMessage(lstCompetencyType, e.getMessage(CompetencyGroupValidator.COMPETENCY_TYPE_NULL));
-//		ErrorMessageUtil.setErrorMessage(errorMessage, e.getMessage(CompetencyGroupValidator.SEQUENCE_PASSED));
-//		ErrorMessageUtil.setErrorMessage(errorMessage, e.getMessage(CompetencyGroupValidator.SEQUENCE_TAKEN));
-//		ErrorMessageUtil.setErrorMessage(errorMessage, e.getMessage(CompetencyGroupValidator.SUM_OF_HAV));
-//		ErrorMessageUtil.setErrorMessage(errorMessage, e.getMessage(CompetencyGroupValidator.EMPTY_COMPETENCY));
-//		ErrorMessageUtil.setErrorMessage(bnbProficiencyLevel, e.getMessage(CompetencyGroupValidator.PROFICIENCY_LEVEL_NULL));
-//		ErrorMessageUtil.setErrorMessage(dtbFrom, e.getMessage(VersionValidator.DATE_FROM));
-//		ErrorMessageUtil.setErrorMessage(dtbTo, e.getMessage(VersionValidator.DATE_TO));
+		ErrorMessageUtil.setErrorMessage(txtName, e.getMessage(DirektoratValidation.NAME));
+		ErrorMessageUtil.setErrorMessage(txtDescription, e.getMessage(DirektoratValidation.DESC));
 	}
 
 }

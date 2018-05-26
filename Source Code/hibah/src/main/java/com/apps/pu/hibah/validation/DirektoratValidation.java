@@ -20,7 +20,7 @@ public void validate(Direktorat subject) throws ValidationException {
 		Map<String, String> mapValidate = new HashMap<String, String>();
 		
 		if(Strings.isNullOrEmpty(subject.getName())) {
-			mapValidate.put(NAME, "Name tidak boleh kosong");
+			mapValidate.put(NAME, "Direktorat tidak boleh kosong");
 		}
 		
 		if(Strings.isNullOrEmpty(subject.getDescription())) {
