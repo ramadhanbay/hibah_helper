@@ -1,12 +1,16 @@
 package com.apps.pu.hibah.entity;
-// Generated 27-May-2018 02:08:30 by Hibernate Tools 3.6.0.Final
+// Generated 29-May-2018 21:18:30 by Hibernate Tools 3.6.0.Final
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,6 +34,7 @@ public class Direktorat implements java.io.Serializable {
 	private String updateBy;
 	private Date createDate;
 	private String createBy;
+	private Set<Satker> satkers = new HashSet<Satker>(0);
 
 	public Direktorat() {
 	}
@@ -43,13 +48,14 @@ public class Direktorat implements java.io.Serializable {
 	}
 
 	public Direktorat(String name, String description, Date updateDate, String updateBy, Date createDate,
-			String createBy) {
+			String createBy, Set<Satker> satkers) {
 		this.name = name;
 		this.description = description;
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
 		this.createDate = createDate;
 		this.createBy = createBy;
+		this.satkers = satkers;
 	}
 
 	@Id
@@ -118,6 +124,15 @@ public class Direktorat implements java.io.Serializable {
 
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "direktorat")
+	public Set<Satker> getSatkers() {
+		return this.satkers;
+	}
+
+	public void setSatkers(Set<Satker> satkers) {
+		this.satkers = satkers;
 	}
 
 }

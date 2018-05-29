@@ -2,13 +2,13 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-  <table-filter match-catalog="hibah" match-name="direktorat"/>
+  <table-filter match-catalog="hibah" match-name="direktorat" />
   <table-filter match-catalog="hibah" match-name="barang" exclude="true"/>
   <table-filter match-catalog="hibah" match-name="log" exclude="true"/>
   <table-filter match-catalog="hibah" match-name="log_copy" exclude="true"/>
   <table-filter match-catalog="hibah" match-name="role_user" exclude="true"/>
   <table-filter match-catalog="hibah" match-name="roles" exclude="true"/>
-  <table-filter match-catalog="hibah" match-name="satker" exclude="true"/>
+  <table-filter match-catalog="hibah" match-name="satker" />
   <table-filter match-catalog="hibah" match-name="transaksi" exclude="true"/>
   <table-filter match-catalog="hibah" match-name="users" exclude="true"/>
 </hibernate-reverse-engineering>

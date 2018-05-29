@@ -16,7 +16,7 @@
 				</row>
 				<row>
 					<label value="${labels.satker.name}"/>
-					<textbox maxlength="100" width="250px" id="txtSatker" />
+					<textbox maxlength="200" width="250px" id="txtSatker" />
 				</row>
 				<row>
 					<space/>
@@ -28,12 +28,12 @@
 			</rows>
 		</grid>
 		<space height="10px"/>
-		<listbox id="lstDir" mold="paging" emptyMessage="${labels.common.dataNotFound}" pagingPosition="both" pageSize="20">
+		<listbox id="lstSatker" mold="paging" emptyMessage="${labels.common.dataNotFound}" pagingPosition="both" pageSize="20">
 			<listhead menupopup="auto">
 				<listheader label="${labels.common.action}" width="75px"/>
-				<listheader label="${labels.Direktorat.name}" sort="auto(name)" />
+				<listheader label="${labels.Direktorat.name}" sort="auto(direktorat.name)" />
 				<listheader label="${labels.satker.name}" sort="auto(name)" />
-				<listheader label="${labels.common.description}"   sort="auto(desc)"/>		
+				<listheader label="${labels.common.description}"   sort="auto(description)"/>		
 				<listheader label="${labels.common.lastUpdateDate}" sort="auto(updateDate)"/>
 				<listheader label="${labels.common.lastUpdateBy}" sort="auto(updateBy)" />
 			</listhead>
@@ -42,9 +42,9 @@
 					<listcell>
 						<a label="${labels.common.detail}" style="text-decoration:underline ;color:blue"  forward="onDetail(${each})"/>
 					</listcell>	
+					<listcell label="${each.direktorat.name}"/>
 					<listcell label="${each.name}"/>
-					<listcell label="${each.name}"/>
-					<listcell label="${each.desc}"/>
+					<listcell label="${each.description}"/>
 					<listcell label="${each.updateDate}"/>
 					<listcell label="${each.updateBy}"/>
 				</listitem>

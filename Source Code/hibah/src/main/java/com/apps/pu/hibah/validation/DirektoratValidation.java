@@ -10,24 +10,23 @@ import com.google.common.base.Strings;
 
 @Component
 public class DirektoratValidation {
-	
+
 	public static final String NAME = "NAME";
 	public static final String DESC = "DESC";
-	
-	
-public void validate(Direktorat subject) throws ValidationException {
-		
+
+	public void validate(Direktorat subject) throws ValidationException {
+
 		Map<String, String> mapValidate = new HashMap<String, String>();
-		
-		if(Strings.isNullOrEmpty(subject.getName())) {
+
+		if (Strings.isNullOrEmpty(subject.getName())) {
 			mapValidate.put(NAME, "Direktorat tidak boleh kosong");
 		}
-		
-		if(Strings.isNullOrEmpty(subject.getDescription())) {
+
+		if (Strings.isNullOrEmpty(subject.getDescription())) {
 			mapValidate.put(DESC, "Deskripsi tidak boleh kosong");
 		}
-		
-		if(mapValidate.size()>0) {
+
+		if (mapValidate.size() > 0) {
 			throw new ValidationException(mapValidate);
 		}
 	}

@@ -17,7 +17,7 @@ public class DirektoratServiceImpl implements DirektoratService {
 	@Autowired
 	DirektoratDao dao;
 	
-	@Override
+
 	public List<Direktorat> findDirektoratLikeName(String dirName) {
 		// TODO Auto-generated method stub
 		return dao.getDirektoratLikeName(dirName);

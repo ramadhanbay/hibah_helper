@@ -1,5 +1,5 @@
 package com.apps.pu.hibah.entity;
-// Generated 08-Apr-2018 12:48:59 by Hibernate Tools 3.6.0.Final
+// Generated 29-May-2018 21:18:30 by Hibernate Tools 3.6.0.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -29,7 +29,7 @@ public class Satker implements java.io.Serializable {
 	private Integer idSatker;
 	private Direktorat direktorat;
 	private String name;
-	private String desc;
+	private String description;
 	private Date updateDate;
 	private String updateBy;
 	private Date createDate;
@@ -48,11 +48,11 @@ public class Satker implements java.io.Serializable {
 		this.createBy = createBy;
 	}
 
-	public Satker(Direktorat direktorat, String name, String desc, Date updateDate, String updateBy, Date createDate,
-			String createBy) {
+	public Satker(Direktorat direktorat, String name, String description, Date updateDate, String updateBy,
+			Date createDate, String createBy) {
 		this.direktorat = direktorat;
 		this.name = name;
-		this.desc = desc;
+		this.description = description;
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
 		this.createDate = createDate;
@@ -71,7 +71,7 @@ public class Satker implements java.io.Serializable {
 		this.idSatker = idSatker;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_direktorat", nullable = false)
 	public Direktorat getDirektorat() {
 		return this.direktorat;
@@ -90,13 +90,13 @@ public class Satker implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "desc", length = 1000)
-	public String getDesc() {
-		return this.desc;
+	@Column(name = "description", length = 1000)
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
