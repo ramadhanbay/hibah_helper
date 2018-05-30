@@ -19,6 +19,7 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
+import com.apps.pu.hibah.entity.Direktorat;
 import com.apps.pu.hibah.entity.Satker;
 import com.apps.pu.hibah.services.ReportService;
 import com.apps.pu.hibah.services.SatkerService;
@@ -93,7 +94,7 @@ public class SatkerSetupComposser extends SelectorComposer<Window>{
 						satkerValidation.validate(dir);
 						satkerServiceImpl.save(dir);
 						Messagebox.show(Labels.getLabel("notif.saved"), Labels.getLabel("common.title.information"), Messagebox.OK, null);						
-						Executions.createComponents("view/setup_inquiry.zul", getSelf().getParent(), null);
+						Executions.createComponents("view/satker_inquiry.zul", getSelf().getParent(), null);
 						getSelf().detach();	
 						
 					}catch (ValidationException e) {
@@ -135,7 +136,24 @@ public class SatkerSetupComposser extends SelectorComposer<Window>{
 	
 	@Listen("onClick=#btnDelete")
 	public void onDelete(){
-		
+		Messagebox.show(Labels.getLabel("common.confirmationDelete"), Labels.getLabel("title.question"), Messagebox.YES | Messagebox.NO, Messagebox.QUESTION,
+				new SerializableEventListener<Event>() {				
+			private static final long serialVersionUID = 1L;
+
+			public void onEvent(Event event) throws Exception {
+				if (event.getName().equals("onYes")) {
+					try{
+						Satker dir = getFinalDir(satkerPublic);
+						satkerServiceImpl.delete(dir);
+						Messagebox.show(Labels.getLabel("common.dataHasBeenDeleted"));
+						Executions.createComponents("view/satker_inquiry.zul", getSelf().getParent(), null);
+						getSelf().detach();	
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
 	}
 	
 	private void populateData() {
@@ -211,6 +229,13 @@ public class SatkerSetupComposser extends SelectorComposer<Window>{
 		result.setDescription(txtDescription.getValue());		
 		result.setUpdateDate(new Date());
 		result.setUpdateBy("SYS");
+		
+		Direktorat direktorat = new Direktorat();
+		direktorat.setIdDirektorat(bnbDirektorat.getKeyValue() == null? null : (Integer)bnbDirektorat.getKeyValue().getKey());
+		direktorat.setName(bnbDirektorat.getKeyValue() == null? null : (String)bnbDirektorat.getKeyValue().getValue());
+		direktorat.setDescription(bnbDirektorat.getKeyValue() == null? null : (String)bnbDirektorat.getKeyValue().getDescription());
+		
+		result.setDirektorat(direktorat);
 		
 		
 		return result;

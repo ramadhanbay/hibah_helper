@@ -22,13 +22,11 @@ public class SatkerServiceImpl implements SatkerService {
 	}
 
 	public void save(Satker satker) {
-		// TODO Auto-generated method stub
-		
+		dao.save(satker);		
 	}
 
 	public void delete(Satker satker) {
-		// TODO Auto-generated method stub
-		
+		dao.delete(satker);		
 	}
 
 }

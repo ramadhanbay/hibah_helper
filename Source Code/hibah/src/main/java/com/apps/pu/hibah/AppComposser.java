@@ -122,6 +122,8 @@ public class AppComposser extends SelectorComposer<Window> {
 			contentInclude.setSrc("view/direktorat_inquiry.zul");
 		}else if (event.getTarget().getId() == PageEnum.INPSAT.getValue()) {
 			contentInclude.setSrc("view/satker_inquiry.zul");
+		}else if (event.getTarget().getId() == PageEnum.INPBAR.getValue()) {
+			contentInclude.setSrc("view/barang_inquiry.zul");
 		}
 		
 		else {

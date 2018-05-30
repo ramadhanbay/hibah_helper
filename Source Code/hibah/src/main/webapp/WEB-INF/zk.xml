@@ -19,4 +19,9 @@
         <name>org.zkoss.zul.Button.mold</name>
         <value>trendy</value>
     </library-property>
+    
+    <library-property>
+	    <name>org.zkoss.zul.nativebar</name>
+	    <value>true</value>
+	</library-property>
 </zk>

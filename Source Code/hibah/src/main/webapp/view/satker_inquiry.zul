@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window id="satkerWin" border="none" apply="com.apps.pu.hibah.SatkerInquiryComposser">
+<window id="satkerWin" border="none" apply="com.apps.pu.hibah.SatkerInquiryComposser" >
 <groupbox closable="false" mold="3d">
 		<caption label="${labels.satker.name}" >
 		</caption>
@@ -28,7 +28,7 @@
 			</rows>
 		</grid>
 		<space height="10px"/>
-		<listbox id="lstSatker" mold="paging" emptyMessage="${labels.common.dataNotFound}" pagingPosition="both" pageSize="20">
+		<listbox id="lstSatker" mold="paging" emptyMessage="${labels.common.dataNotFound}" height="500px" pagingPosition="both" pageSize="20">
 			<listhead menupopup="auto">
 				<listheader label="${labels.common.action}" width="75px"/>
 				<listheader label="${labels.Direktorat.name}" sort="auto(direktorat.name)" />

@@ -1,8 +1,8 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window id="satkerWin" border="none" apply="com.apps.pu.hibah.SatkerInquiryComposser" >
+<window id="satkerWin" border="none" apply="com.apps.pu.hibah.BarangInquiryComposser" >
 <groupbox closable="false" mold="3d">
-		<caption label="${labels.satker.name}" >
+		<caption label="${labels.barang.barang}" >
 		</caption>
 		<grid sclass="form-entry">
 			<columns>
@@ -11,12 +11,12 @@
 			</columns>
 			<rows>
 				<row>
-					<label value="${labels.Direktorat.name}"/>
-					<bandbox id="bnbDirektorat" use="com.apps.pu.hibah.ui.PopupSingle" width="250px"></bandbox>
+					<label value="${labels.barang.kode}"/>
+					<textbox maxlength="200" width="250px" id="txtKode" />
 				</row>
 				<row>
-					<label value="${labels.satker.name}"/>
-					<textbox maxlength="200" width="250px" id="txtSatker" />
+					<label value="${labels.barang.name}"/>
+					<textbox maxlength="200" width="250px" id="txtBarang" />
 				</row>
 				<row>
 					<space/>
@@ -28,12 +28,11 @@
 			</rows>
 		</grid>
 		<space height="10px"/>
-		<listbox id="lstSatker" mold="paging" emptyMessage="${labels.common.dataNotFound}" height="500px" pagingPosition="both" pageSize="20">
+		<listbox id="lstBarang" mold="paging" emptyMessage="${labels.common.dataNotFound}" height="500px" pagingPosition="both" pageSize="20">
 			<listhead menupopup="auto">
 				<listheader label="${labels.common.action}" width="75px"/>
-				<listheader label="${labels.Direktorat.name}" sort="auto(direktorat.name)" />
-				<listheader label="${labels.satker.name}" sort="auto(name)" />
-				<listheader label="${labels.common.description}"   sort="auto(description)"/>		
+				<listheader label="${labels.barang.kode}" sort="auto(kodeBarang)" />
+				<listheader label="${labels.barang.name}" sort="auto(namaBarang)" />		
 				<listheader label="${labels.common.lastUpdateDate}" sort="auto(updateDate)"/>
 				<listheader label="${labels.common.lastUpdateBy}" sort="auto(updateBy)" />
 			</listhead>
@@ -42,9 +41,8 @@
 					<listcell>
 						<a label="${labels.common.detail}" style="text-decoration:underline ;color:blue"  forward="onDetail(${each})"/>
 					</listcell>	
-					<listcell label="${each.direktorat.name}"/>
-					<listcell label="${each.name}"/>
-					<listcell label="${each.description}"/>
+					<listcell label="${each.kodeBarang}"/>
+					<listcell label="${each.namaBarang}"/>
 					<listcell label="${each.updateDate}"/>
 					<listcell label="${each.updateBy}"/>
 				</listitem>

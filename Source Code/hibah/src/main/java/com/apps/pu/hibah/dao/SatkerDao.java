@@ -47,5 +47,30 @@ public class SatkerDao {
 			return null;
 		}	
 	}
+	
+	@Transactional
+	public Satker save(Satker satker) {
+		
+		if(satker.getIdSatker() != null) {
+			em.merge(satker);
+		}else {
+			em.persist(satker);
+		}
+		
+		em.flush();
+		
+		return satker;
+		
+	}
+	
+	@Transactional
+	public Satker delete(Satker satker) {
+		
+		satker = em.merge(satker);
+		em.remove(satker);
+		em.flush();
+		
+		return satker;		
+	}
 
 }
