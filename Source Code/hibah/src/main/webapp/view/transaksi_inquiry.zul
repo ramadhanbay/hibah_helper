@@ -1,0 +1,69 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="transaksiInsquiryWin" border="none" apply="com.apps.pu.hibah.TransaksiInquiryComposser" >
+<groupbox closable="false" mold="3d">
+		<caption label="${labels.trx.Transaksi}" >
+		</caption>
+		<grid sclass="form-entry">
+			<columns>
+				<column align="right" width="200px"/>
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="${labels.report.Direktorat}"/>
+					<bandbox id="bnbDirektorat" use="com.apps.pu.hibah.ui.PopupSingle" width="250px"></bandbox>
+				</row>
+				<row>
+					<label value="${labels.report.satuankerja}"/>
+					<bandbox id="bnbSatuanKerja" use="com.apps.pu.hibah.ui.PopupSingle" width="250px"></bandbox>	
+				</row>
+				<row>
+					<label value="${labels.barang.kode}"/>
+					<textbox maxlength="200" width="250px" id="txtKode" />
+				</row>
+				<row>
+					<label value="${labels.barang.name}"/>
+					<textbox maxlength="200" width="250px" id="txtBarang" />
+				</row>
+				<row>
+					<space/>
+					<hbox>
+						<button id="btnFind" label="${labels.common.search}" mold="trendy" image="${labels.image.link.search}" />
+						<button id="btnNew" label="${labels.common.newSetup}" mold="trendy" image="${labels.image.link.add}" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<space height="10px"/>
+		<listbox id="lstTransaksi" mold="paging" emptyMessage="${labels.common.dataNotFound}" height="500px" pagingPosition="both" pageSize="20">
+			<listhead menupopup="auto">
+				<listheader label="${labels.common.action}" width="75px"/>
+				<listheader label="${labels.report.Direktorat}" sort="auto(kodeBarang)" />
+				<listheader label="${labels.report.satuankerja}" sort="auto(namaBarang)" />	
+				<listheader label="${labels.report.pemda}" sort="auto(kodeBarang)" />
+				<listheader label="${labels.report.tahunperolehan}" sort="auto(namaBarang)" />	
+				<listheader label="${labels.barang.kode}" sort="auto(kodeBarang)" />
+				<listheader label="${labels.barang.name}" sort="auto(namaBarang)" />		
+				<listheader label="${labels.common.lastUpdateDate}" sort="auto(updateDate)"/>
+				<listheader label="${labels.common.lastUpdateBy}" sort="auto(updateBy)" />
+			</listhead>
+			<template name="model">
+				<listitem value="${each}">
+					<listcell>
+						<a label="${labels.common.detail}" style="text-decoration:underline ;color:blue"  forward="onDetail(${each})"/>
+					</listcell>	
+					<listcell label="${each.kodeBarang}"/>
+					<listcell label="${each.namaBarang}"/>
+					<listcell label="${each.kodeBarang}"/>
+					<listcell label="${each.namaBarang}"/>
+					<listcell label="${each.kodeBarang}"/>
+					<listcell label="${each.namaBarang}"/>
+					<listcell label="${each.updateDate}"/>
+					<listcell label="${each.updateBy}"/>
+				</listitem>
+			</template>
+		</listbox>
+	</groupbox>
+</window>
+</zk>

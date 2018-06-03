@@ -10,6 +10,7 @@ public enum PageEnum {
 	INPDIR("Direktorat"),
 	INPSAT("Satker"),
 	INPBAR("Barang"),
+	TRX("Transaksi"),
 	;
 	
 	private String value;

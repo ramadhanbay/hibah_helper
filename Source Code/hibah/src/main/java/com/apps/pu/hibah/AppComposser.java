@@ -69,6 +69,13 @@ public class AppComposser extends SelectorComposer<Window> {
 		itemBarang.setId(PageEnum.INPBAR.getValue());
 		itemBarang.setParent(nav);
 		
+		//===== Transaksi ========
+		Navitem navTrans = new Navitem();
+		navTrans.setLabel("Transaksi");
+		navTrans.setIconSclass("z-icon-briefcase");	
+		navTrans.setId(PageEnum.TRX.getValue());
+		navTrans.setParent(navbar);
+		
 		//===== Report ========
 		Nav navReport = new Nav();
 		navReport.setLabel("Laporan");
@@ -124,6 +131,8 @@ public class AppComposser extends SelectorComposer<Window> {
 			contentInclude.setSrc("view/satker_inquiry.zul");
 		}else if (event.getTarget().getId() == PageEnum.INPBAR.getValue()) {
 			contentInclude.setSrc("view/barang_inquiry.zul");
+		}else if (event.getTarget().getId() == PageEnum.TRX.getValue()) {
+			contentInclude.setSrc("view/transaksi_inquiry.zul");
 		}
 		
 		else {
